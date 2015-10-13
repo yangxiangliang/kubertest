@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+    name: applier-2.3.11
+spec:
+  replicas: 20
+  selector:
+    app: applier
+    version: 2.3.11
+  template:
+    metadata:
+      labels:
+        app: applier
+        version: 2.3.11
+    spec:
+      containers:
+      - name: applier
+        image: gcr.io/sojern-platform/applier:2.3.11
+      imagePullPolicy: PullAlways
