@@ -24,6 +24,10 @@ def release_kuber(context, app, version):
         log.error('Provided app does not belong to the context')
         return
 
+    git = Repo('{}/..'.format(os.getcwd())).git
+    git.checkout('master')
+    git.pull()
+
     try:
         # # check whether a container with app name and provided version number exists
         # container_tags = subprocess.check_output(['gsutil', 'ls', '{}/{}'.format(config.gs_path_to_app, app)])
@@ -40,10 +44,6 @@ def release_kuber(context, app, version):
         # if not container_exist:
         #     log.error('The container with provided app and version number does not exist')
         #     return
-
-        git = Repo('{}/..'.format(os.getcwd())).git
-        git.checkout('master')
-        git.pull()
 
         # modify app.yml file with new version
         yaml_file = '{}.yml'.format(app)
@@ -78,6 +78,7 @@ def release_kuber(context, app, version):
             git.checkout('.')
 
     except Exception as e:
+        git.checkout('.')
         log.exception('Exception:{}'.format(e))
 
 
