@@ -53,12 +53,12 @@ def release_kuber(context, app, version):
         # get replication controller name, sample output of this command:
         # CONTROLLER              CONTAINER (S)     IMAGES            SELECTOR     REPLICAS
         # backend-controller      applier           applier_2.3.11    applier      3
-        rc_name = subprocess.check_output(['kubectl', '--context="{}"'.format(context), 'get', 'rc',
-                                           '--selector=app="{}"'.format(app)]).split('\n')[1].split()[0]
+        rc_name = subprocess.check_output(['kubectl', '--context={}'.format(context), 'get', 'rc',
+                                           '--selector=run={}'.format(app)]).split('\n')[1].split()[0]
 
-        print 'controller name:' rc_name
+        print 'controller name:', rc_name
         # run rolling update
-        exit_code = subprocess.call(['kubectl', '--context="backend"', 'rolling-update',
+        exit_code = subprocess.call(['kubectl', '--context=backend', 'rolling-update',
                                      '{}'.format(rc_name), '-f', yaml_file])
 
         # if rolling update succeeds, commit changes in Git repo and push back to master

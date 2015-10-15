@@ -5,4 +5,4 @@ app_dict = {'pixels-us': ['pixels'],
             'pixels-ap': ['pixels'],
             'backend': ['applier', 'ultra', 'pacman', 'updater', 'capper',
                         'budget', 'tepares', 'vigilant'],
-            'vagrant': ['my-nginx-arkgh', 'my-nginx-u7mlh', 'my-nginx-v733r']}
+            'vagrant': ['my-nginx']}
