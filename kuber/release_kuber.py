@@ -58,7 +58,7 @@ def release_kuber(context, app, version):
 
         print 'controller name:', rc_name
         # run rolling update
-        exit_code = subprocess.call(['kubectl', '--context=backend', 'rolling-update',
+        exit_code = subprocess.call(['kubectl', '--context=vagrant', 'rolling-update',
                                      '{}'.format(rc_name), '-f', yaml_file])
 
         # if rolling update succeeds, commit changes in Git repo and push back to master
