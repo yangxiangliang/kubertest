@@ -11,7 +11,8 @@ import os
 
 handler = logging.StreamHandler(sys.stdout)
 handler.setFormatter(logging.Formatter(
-    '%(asctime)s - %(levelname)s - %(filename)s:%(funcName)s:%(lineno)d - %(message)s', '%Y-%m-%d-%H:%M:%S'))
+    '%(asctime)s - %(levelname)s - %(filename)s:%(funcName)s:%(lineno)d - %(message)s', '%Y-%m-%d-%H:%M:%S'  # NOQA
+))
 logging.getLogger().setLevel(logging.INFO)
 logging.getLogger().addHandler(handler)
 log = logging.getLogger(__name__)
